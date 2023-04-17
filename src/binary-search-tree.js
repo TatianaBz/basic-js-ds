@@ -117,7 +117,7 @@
      let node = this.node;
      do {node = node.right;
      }
-     while (node.right)
+     while (node.right);
      return node.data;
    }
  }
