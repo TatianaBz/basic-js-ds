@@ -7,23 +7,25 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  * @example
  
- *
+ *const queue = new Queue();
  * queue.enqueue(1); // adds the element to the queue
  * queue.enqueue(3); // adds the element to the queue
  * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
-const queue = new Queue();
 
 class Queue {
   constructor() {
     this.queue = [];
-    this.result = {};
+    this.result = null;
   }
   getUnderlyingList() {
-    this.result[value] = this.queue[0];
-    this.result[next] = this.queue[1];
-
+    for (let i = 1; i <= this.queue.length; i++) {
+      this.result = {
+        value: this.queue[this.queue.length - i],
+        next: this.result,
+      };
+    }
     return this.result;
   }
 
@@ -32,8 +34,7 @@ class Queue {
   }
 
   dequeue() {
-    let res = this.queue.shift();
-    return res;
+    return this.queue.shift();
   }
 }
 
